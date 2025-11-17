@@ -12,6 +12,57 @@
 
 public class Exercise9 {
     public static void main(String[] args) {
-        // YOUR CODE GOES HERE  
+        int rows = 5;
+        int cols = 5;
+        int[][] grid = new int[rows][cols];
+        int iterations = 6;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                grid[i][j] = Math.random() < 0.3 ? 1 : 0;
+            }
+        }
+
+        for (int iter = 1; iter <= iterations; iter++) {
+            System.out.println("Iteration " + iter + ":");
+            printGrid(grid);
+            grid = nextGeneration(grid);
+        }
+    }
+
+    public static int[][] nextGeneration(int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[][] newGrid = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int liveNeighbors = 0;
+                for (int r = i - 1; r <= i + 1; r++) {
+                    for (int c = j - 1; c <= j + 1; c++) {
+                        if (r == i && c == j) continue;
+                        if (r >= 0 && r < rows && c >= 0 && c < cols) {
+                            liveNeighbors += grid[r][c];
+                        }
+                    }
+                }
+                if (grid[i][j] == 1) {
+                    newGrid[i][j] = (liveNeighbors == 2 || liveNeighbors == 3) ? 1 : 0;
+                } else {
+                    newGrid[i][j] = (liveNeighbors == 3) ? 1 : 0;
+                }
+            }
+        }
+        return newGrid;
+    }
+
+    public static void printGrid(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                System.out.print(grid[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }

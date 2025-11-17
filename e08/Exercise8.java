@@ -11,6 +11,24 @@
 
 public class Exercise8 {
     public static void main(String[] args) {
-        // YOUR CODE GOES HERE  
+         char[][] board = new char[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                double rand = Math.random();
+                if (rand < 0.33) board[i][j] = 'X';
+                else if (rand < 0.66) board[i][j] = 'O';
+                else board[i][j] = ' ';
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j]);
+                if (j < 2) System.out.print(" | ");
+            }
+            System.out.println();
+            if (i < 2) System.out.println("--+---+--");
+        }  
     }
 }

@@ -10,6 +10,28 @@
 
 public class Exercise6 {
     public static void main(String[] args) {
-        // YOUR CODE GOES HERE  
+       int rows = 3;
+        int cols = 3;
+        int[][] array = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                array[i][j] = (int) (Math.random() * 10);
+            }
+        }
+
+        for (int i = 0; i < rows; i++) {
+            int max = array[i][0];
+            for (int j = 1; j < cols; j++) {
+                if (array[i][j] > max) {
+                    max = array[i][j];
+                }
+            }
+            System.out.print("Row " + (i + 1) + ": ");
+            for (int j = 0; j < cols; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println("| Max: " + max);
+        }
     }
 }

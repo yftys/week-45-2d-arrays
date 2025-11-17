@@ -12,6 +12,26 @@
 
 public class Exercise7 {
     public static void main(String[] args) {
-        // YOUR CODE GOES HERE  
+        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        int times = 4;
+        double[][] temperatures = new double[days.length][times];
+
+        for (int i = 0; i < days.length; i++) {
+            for (int j = 0; j < times; j++) {
+                temperatures[i][j] = 15 + Math.random() * 15;
+            }
+        }
+
+        for (int i = 0; i < days.length; i++) {
+            double sum = 0;
+            System.out.print(days[i] + " temperatures: ");
+            for (int j = 0; j < times; j++) {
+                sum += temperatures[i][j];
+                System.out.print(String.format("%.1f", temperatures[i][j]));
+                if (j < times - 1) System.out.print(", ");
+            }
+            double average = sum / times;
+            System.out.println(" | Average: " + String.format("%.1f", average));
+        }
     }
 }
